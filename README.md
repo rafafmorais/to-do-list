@@ -35,4 +35,63 @@ Isso significa que a API está ativa! Deixe o terminal aberto. Para parar, press
 
 A API roda na porta 3000 (pode mudar no código se houver conflito). Teste acessando `http://localhost:3000/tarefas` no navegador.
 
+## 5. Rotas disponíveis da API
+A API tem base em `/tarefas` e suporta os 4 métodos principais para CRUD. Cada rota retorna JSON (exceto DELETE em sucesso). As tarefas têm estrutura: `{ id: number, titulo: string, descricao: string (opcional), concluida: boolean (default false) }`.  Os IDs são gerados automaticamente, mas tem o 1, 2 e 3.
+- **GET /tarefas**  
+Descrição: Lista todas as tarefas armazenadas em memória.  
+O que faz: Retorna um array JSON com as tarefas (que estava vazio no início).  
+Rota: `http://localhost:3000/tarefas`.  
+Status: 200 OK.
+- **POST /tarefas**
+Descrição: Cria uma nova tarefa.
+O que faz: Adiciona uma tarefa ao array em memória e retorna a tarefa criada.
+Rota: http://localhost:3000/tarefas
+Status: 201 Created
+Exemplo de JSON:
+{
+  "titulo": "Estudar para a Prova DO Chico",
+  "descricao": "Revisar Flexbox e Grid",
+  "concluida": false
+
+}
+- **PUT /tarefas/:id**
+Descrição: Atualiza uma tarefa existente pelo ID.
+O que faz: Modifica apenas os campos enviados no JSON.
+Rota: http://localhost:3000/tarefas/1
+Status: 200 OK 
+Exemplo de JSON:
+{
+  "titulo": "Estudar para a Prova do Chico - Atualizado",
+  "concluida": true
+  }
+- **DELETE /tarefas/:id**
+Descrição: Exclui uma tarefa pelo ID.
+O que faz: Remove a tarefa do array em memória.
+Rota: http://localhost:3000/tarefas/1
+Status: 204 No Content
+
+## 6. Exemplos de JSON para Testes
+Criar nova tarefa (POST /tarefas):
+{
+  "titulo": "Fazer Entrega 1 do PI da Cristina",
+  "descricao": "Fazer um documento em pdf com funções desenvolvidas em Polinômio de Taylor",
+  "concluida": false
+}
+Atualizar tarefa existente (PUT /tarefas/:id):
+
+{
+  "titulo": "Fazer Entrega 1 do PI da Cristina - Atualizado",
+  "concluida": true
+}
+* As outras tarefas estão na pasta de prints, localizados como "post-tarefas.png" "post 2-tarefas.png" e post 3-tarefas.png".
+## 7. Como testar no Postman
+- Abra o Postman (ou extensão no VS Code).
+- Crie uma nova requisição para cada rota:
+GET /tarefas → método GET → URL http://localhost:3000/tarefas.
+POST /tarefas → método POST → URL http://localhost:3000/tarefas → Body → raw → JSON (cole o exemplo acima).
+PUT /tarefas/1 → método PUT → URL http://localhost:3000/tarefas/1 → Body → raw → JSON.
+DELETE /tarefas/1 → método DELETE → URL http://localhost:3000/tarefas/1.
+Verifique os status codes (200, 201, 204, 404) e as respostas.
+
 Obrigada pela oportunidade de recuperação! 😊
+
